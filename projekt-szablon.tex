@@ -82,9 +82,16 @@ Prowadzący: Mgr inż. Marcin Skobel \\
 \vspace{1cm}
 \end{center}
 
+%
+% spis treści
+%
 \footnotesize
 \tableofcontents
 
+
+%
+% spis listingów
+%
 \footnotesize
 \lstlistoflistings
 
@@ -92,14 +99,281 @@ Prowadzący: Mgr inż. Marcin Skobel \\
 
 \clearpage
 \section{Wprowadzenie}
-charakterystyka gry, gatunek, platforma sprzętowa, wprowadzenie do rozgrywki
+Projekt jest to gra typu przygodowo-bijatykowej o otwartym wielkim świecie. Trafiamy na obszar startowy, w którym pomagają nam postacie w grze i mówią co mamy robić jako zadania w świeci gry. Mapa jest wielką pustynią z charakterystycznymi punktami i trzema wioskami w ktorych otrzymujemy zadania. Polega to na podróżowaniu między wioskami i walce z pojawiającymi się potworami. Platforma sprzętowa to komputery z systemem Windows
 
-\clearpage
 \section{Charakterystyka techniczna}
-statystyki techniczne (np. liczba klatek na sekundę, obciążenie pamięci, rozmiar na dysku itp.), najciekawsze rozwiązania techniczne zastosowane w grze (skrypty, komponenty itp.)\\
+\subsection{Statystyki techniczne}
+Całkowita rozmiar gry to 575MB, średnia ilość FPS w grze wacha się pomiędzy 60-90. Najbardziej obciążającą lokalizacją jest wioska "Na prawo". 
 
-\clearpage
+\begin{figure}[ht!]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{pictures/FPS_LOW_LOCATION.jpg}
+\end{center}
+\caption{Statystyki gry.}
+\end{figure}
+
+\subsection{Najciekawsze rozwiązania techniczne zastosowane w grze}
+\subsubsection{Skrypty}
+\begin{lstlisting}[caption={Skrypt 'Timer' - wykonywanie akcji po ustawionym uprzednio czasie}]
+using UnityEngine;
+using UnityEngine.Events;
+using System;
+using System.Collections;
+
+public enum TimerMode
+{
+    CountToDown,
+    CountToUp
+};
+
+public class Timer : MonoBehaviour
+{
+
+
+    public float timerCounter;
+    public float timerTarget;
+    public bool isRun;
+    public TimerMode timerMode;
+    public UnityEvent OnTimerComplete;
+    public UnityEvent OnTimerCount;
+
+
+    public void InitializeTimer(float startValue, float targetValue, TimerMode mode)
+    {
+        try
+        {
+            setTimerCounter(startValue);
+            setTimerMode(mode);
+            setTimerTarget(targetValue);
+        }
+        catch (ArgumentException)
+        {
+            Debug.Log("Initialize Timer had set invalid parameters!");
+        }
+    }
+
+    public void run()
+    {
+        isRun = true;
+    }
+
+    public void stop()
+    {
+        isRun = false;
+    }
+
+
+    private void Update()
+    {
+        if (isRun)
+        {
+
+            OnTimerCount.Invoke();
+
+            bool condition = false;
+
+            if (timerMode == TimerMode.CountToUp)
+            {
+                condition = (timerCounter > timerTarget) ? true : false;
+                timerCounter += Time.deltaTime;
+            }
+            else
+            {
+                condition = (timerCounter < timerTarget) ? true : false;
+                timerCounter -= Time.deltaTime;
+            }
+
+            if (condition == true)
+            {
+
+                stop();
+                OnTimerComplete.Invoke();
+            }
+
+        }
+
+    }
+
+    public void setTimerCounter(float timerCounter)
+    {
+
+        if (timerCounter == 0)
+        {
+            throw new ArgumentException("Time must be greater than 0!", "timerCounter");
+        }
+
+        this.timerCounter = timerCounter;
+    }
+
+    public float getTimerCounter()
+    {
+        return timerCounter;
+    }
+
+    public void setTimerTarget(float timerTarget)
+    {
+        if (timerTarget < 0)
+        {
+            throw new ArgumentException("Timer duration must be greater than 0!", "timerDuration");
+
+        }
+
+        this.timerTarget = timerTarget;
+    }
+
+    public float getTimerTarget()
+    {
+        return timerTarget;
+    }
+
+    public void setTimerMode(TimerMode timerMode)
+    {
+
+        if (!Enum.IsDefined(typeof(TimerMode), timerMode))
+        {
+            throw new ArgumentException("Mode of Timer must set right!", "timerCountMode");
+        }
+
+        this.timerMode = timerMode;
+    }
+
+    public TimerMode getTimerCountMode()
+    {
+        return timerMode;
+    }
+
+    public void ResetTimer()
+    {
+        timerCounter = 0;
+    }
+
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Skrypt 'EnemyAi' - zachowanie oraz poruszanie się przeciwników}]
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class EnemyAi : MonoBehaviour
+{
+
+    public int health = 100;
+    public NavMeshAgent agent;
+    public Transform player;
+    public LayerMask whatIsGrounde, whatIsPlayer;
+
+    public Vector3 walkPoint;
+    bool walkPointSet;
+    public float walkPointRange;
+
+    public float timeBetweenAttacks;
+    bool alreadyAttacked;
+    public GameObject projectile;
+
+    public float sightRange, attackRange;
+    public bool playerInSightRange, playerInAttackRange;
+
+    public Animator animator;
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    private void SearchWalkPoit()
+    {
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGrounde))
+            walkPointSet = true;
+    }
+
+    private void Patroling()
+    {
+        animator.SetBool("isAttack", false);
+        animator.SetBool("isDead", false);
+
+        if (!walkPointSet) SearchWalkPoit();
+        if (walkPointSet) agent.SetDestination(walkPoint);
+
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+        if (distanceToWalkPoint.magnitude < 1f) walkPointSet = false;
+    }
+
+    private void ChasePlayer()
+    {
+        agent.SetDestination(player.position);
+    }
+
+    private void AttackPlayer()
+    {
+        animator.SetBool("isAttack", true);
+        agent.SetDestination(transform.position);
+        transform.LookAt(player);
+
+        if(!alreadyAttacked)
+        {
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            RaycastHit theHit;
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out theHit))
+            {
+                theHit.transform.SendMessage("HitByEnemy");
+            }
+        }
+    }
+
+    private void ResetAttack()
+    {
+        animator.SetBool("isAttack", false);
+        alreadyAttacked = false;
+    }
+
+    private void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+
+    }
+
+    private void DestroyEnemy()
+    {
+        animator.SetBool("isAttack", false);
+        animator.SetBool("isDead", true);
+    }
+
+    void Update()
+    {
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+    }
+}
+
+\end{lstlisting}
+
+\subsubsection{Animator}
+
+\begin{figure}[ht!]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{pictures/EnemyAnimator.jpg}
+\end{center}
+\caption{Animator - EnemyController}
+\end{figure}
+
 \section{Scenariusz gry}
+Wcielamy się w rolę fałszywie oskarżonego łowcy przygód, który w trakcie jednej ze swoich wypraw zostaje złapany przez straż panującą w tej krainie. W trakcie ucieczki gubi straż i natrafia na pustynię, na której znajduje obóz w którym wykończony mdlejesz. Okazuje się, że jest to obóz ludzi ktorzy również mają z prawem na pieńku. Po obudzeniu się wita nas kapitan obozu, który daje nam pierwsze zadanie abyśmy dotarli do mędrca w wiosce na wschód. Po drodze atakują nas potwory, które władza wysyła w to miejsce, ponieważ nie potrafi nic innego z nimi zrobić. Okazuje się, że nasze dłonie są magiczne i jesteśmy w stanie te potwory pokonać. W trakcie podróży musimy walczyć o przetrwanie i wydostać się z tej krainy aby udowodnić swoją niewinność. Na końcu spotykamy straszną zjawę, która okazuje się być źródłem powstawania potworów. Kiedy ją pokonujemy, kraina zostaje uratowana i wszyscy mogą spokojnie żyć.
 
 \clearpage
 \section{Rozgrywka}
