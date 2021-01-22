@@ -378,6 +378,48 @@ Wcielamy się w rolę fałszywie oskarżonego łowcy przygód, który w trakcie 
 \clearpage
 \section{Rozgrywka}
 
+\begin{figure}[ht!]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{pictures/MainMenu.jpg}
+\end{center}
+\caption{Menu główne gry.}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{pictures/Creators.jpg}
+\end{center}
+\caption{Menu z widocznymi twórcami gry.}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{pictures/StartGame.jpg}
+\end{center}
+\caption{Miejsce startowe w grze.}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{pictures/StoryWindow.jpg}
+\end{center}
+\caption{Rozpoczęcie pierwszego zadania.}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{pictures/MenuInGame.jpg}
+\end{center}
+\caption{Menu dostępne w czasie gry.}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{pictures/FightWithOpponents.jpg}
+\end{center}
+\caption{Przeciwnicy występujący na pustkowiach.}
+\end{figure}
+
 \clearpage
 \section{Opis wkładu własnego w realizację projektu}
 
@@ -385,25 +427,32 @@ Wcielamy się w rolę fałszywie oskarżonego łowcy przygód, który w trakcie 
 \begin{description}
   \item[Stanisław Mól:] \hfill
   	\begin{itemize}
- 	  \item Postać gracza
- 	  \item Poruszanie się gracza
-	  \item Pierwszy przeciwnik
-	  \item Teren poruszania się przeciwnika
-	  \item System animacji przeciwnika
-	  \item Atakowanie / poruszanie się przeciwnika (pojawiły się błędy)
-	  \item Naprawa błędów
-	  \item Zmiana przeciwnika na Humanoidalnego
-	  \item Dodanie MainMenu
+ 	  \item Pierwszoosobowa postać - prosty avatar sterowany przez gracza z kamerą pierwszoosobową i podstawowym poruszaniem się.
+	  \item Przeciwnicy - pobrany z assetstore model przeciwnika humanoidalnego.
+	  \item Animacje poruszania się przeciwnika - animacja została pobrana z assetsstore, dzięki systemowi kości została dopasowana do modelu przeciwnika i 				  odpowiednio zaprogramowana.
+	  \item Teren poruszania się przeciwnika - z pomocą warstw został wyznaczony teren po którym może poruszać się przeciwnik.
+	  \item Animacja ataku przeciwnika - animacja poruszania oraz atakowania zostały zaprogramowane w odpowiedni sposób.
+	  \item Poprawa błędów związanych z wyginaniem się przeciwnika oraz "wystrzliwaniem" przeciwnika w powietrze.
+	  \item Dodanie Main Menu - dodane zostało menu główne z podstawowymi opcjami.
+	  \item Zadawanie obrażeń przez przeciwnika - przeciwnik może zadawać obrażenia graczowi.
+	  \item Zadawanie obrażeń przez gracza - gracz może zadawać obrażenia przeciwnikom.
+	  \item System HP - dostowano hp przeciwników i obrażeń jakie zadają, oraz hp i obrażen gracza w taki sposób, aby gra była grywalna.
+	  \item Naprawiono problem z zabijaniem gracza na jedno uderzenie przeciwnika - błąd wynikał z źle napisanej logiki atakowania przez przeciwników.
+	  \item Poprawiono widok kamery - kamera ucinała świat i wyświettlała elementy w tle błędnie.
+	  \item Pasek zdrowia - dodano na UI pasek informujący ile zdrowia pozostało graczowi.
+	  \item Celownik - dodano na UI celownik, aby było wiadomo gdzie gracz celuje.
+	  \item Napis po śmiertny - dodano informację o śmierci gracza.
+	  \item Spawner - dodano element z którego pojawiaja się przeciwnicy. Obiekt ten działa czasowo, raz na 5 sekund generuje jednego przeciwnika.
 	\end{itemize}
   \item[ Erwin Konkel:] \hfill
   	\begin{itemize}
       \item Skybox - sam materiał pochodzi z asset store, jednak trzeba było jeszcze dostosować oświetlenie
-  	  \item Design mapy - teren robiony ręcznie przy pomocy narzędzi do modelowania terenu w Unity. Starałem sie stworzyć naturalne krzywizny aby teren był ciekawy i wraz z różnymi rodzajami terenu lub wgłębieniami na wody
- 	  \item Tekstury - stosowałem gotowe tekstury dostępne w asset store, teksturowanie terenu wykonywałem sam i starałem się stowrzyć różne klimaty w każdej wiosce
-  	  \item Wieże - wieże miały stanowic swojego rodzaju punkty charakterystyczne i orientacyjne dla gracza, oraz byly przygotowywane z myślą dalszej rozbudowy gry
+  	  \item Design mapy - teren robiony ręcznie przy pomocy narzędzi do modelowania terenu w Unity. Starałem sie stworzyć naturalne krzywizny aby teren był 		   ciekawy i wraz z różnymi rodzajami terenu lub wgłębieniami na wody
+ 	  \item Tekstury - stosowałem gotowe tekstury dostępne w asset store, teksturowanie terenu wykonywałem sam i starałem się stowrzyć różne klimaty w 				   każdej wiosce
+  	  \item Wieże - wieże miały stanowic swojego rodzaju punkty charakterystyczne i orientacyjne dla gracza, oraz byly przygotowywane z myślą dalszej 					  rozbudowy gry
 	  \item Wioska początkowa - wioska głównie wykonana z gotowego modelu, dopasowałem elementy wioski do terenu
 	  \item Wioska leśna - stworzona przeze mnie wioska z gotowych elementów jak beczki czy namioty oraz elementy wokól wioski i tekstury
-	  \item Wioska bagienna - wioska na której miała się rozgrywać końcowa walka, stworzyłem teren oraz arenę, jednak ze względu na brak czasu i ograniczenia unity collab co do rozmiaru nie udało mi się uzyskać zamierzonego efektu zniszczonej wioski
+	  \item Wioska bagienna - wioska na której miała się rozgrywać końcowa walka, stworzyłem teren oraz arenę, jednak ze względu na brak czasu i 					   ograniczenia unity collab co do rozmiaru nie udało mi się uzyskać zamierzonego efektu zniszczonej wioski
  	  \item Granice mapy - wymodelowane na terenie standardowe ściany wokól mapy w celu uniemożliwienia graczowi wypadnięcia za mapę
   	  \item Ulepszenie ścieżki - stworzenie ścieżek prowadzących do wiosek i w zamyśle do reszty mapy 
 	  \item Rozwijanie wioski - poprawienie lewitujących elementów i dodanie oraz dopasowanie colliderów do elementow wiosek
@@ -418,23 +467,27 @@ Wcielamy się w rolę fałszywie oskarżonego łowcy przygód, który w trakcie 
 \end{description}
 
 \clearpage
-\section{Spis zastosowanych assetów z krótką charakterystykę}
+\section{Spis zastosowanych assetów}
+\vspace{0.5cm}
 \begin{itemize}
-  \item Third Person Controller - Basic Locomotion FREE - https://assetstore.unity.com/packages/tools/utilities/third-person-controller-basic-locomotion-free-82048
-  \item Free Low Poly Desert Pack - https://assetstore.unity.com/packages/3d/environments/free-low-poly-desert-pack-106709
-  \item Fantasy Skybox Free - https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
-  \item Ruined Tower Free - https://assetstore.unity.com/packages/3d/environments/ruined-tower-free-66495
-  \item Spider Green - https://assetstore.unity.com/packages/3d/characters/animals/insects/spider-green-11869
-  \item Campfire Pack - https://assetstore.unity.com/packages/3d/environments/fantasy/campfire-pack-11256
-  \item Arrow WayPointer - https://assetstore.unity.com/packages/tools/particles-effects/arrow-waypointer-22642
-  \item Basic Bandit - https://assetstore.unity.com/packages/3d/characters/humanoids/humans/basic-bandit-89978
-  \item Realistic Tree - https://assetstore.unity.com/packages/3d/vegetation/trees/realistic-tree-9-rainbow-tree-54622
-  \item Round Tower - https://assetstore.unity.com/packages/3d/environments/historic/round-tower-5581
+	\item Third Person Controller - Basic Locomotion FREE - https://assetstore.unity.com/packages/tools/utilities/third-person-controller-basic-locomotion-free-82048
+	\item Free Low Poly Desert Pack - https://assetstore.unity.com/packages/3d/environments/free-low-poly-desert-pack-106709
+	\item Fantasy Skybox Free - https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
+ 	\item Ruined Tower Free - https://assetstore.unity.com/packages/3d/environments/ruined-tower-free-66495
+	\item Spider Green - https://assetstore.unity.com/packages/3d/characters/animals/insects/spider-green-11869
+	\item Campfire Pack - https://assetstore.unity.com/packages/3d/environments/fantasy/campfire-pack-11256
+	\item Arrow WayPointer - https://assetstore.unity.com/packages/tools/particles-effects/arrow-waypointer-22642
+  	\item Basic Bandit - https://assetstore.unity.com/packages/3d/characters/humanoids/humans/basic-bandit-89978
+  	\item Realistic Tree - https://assetstore.unity.com/packages/3d/vegetation/trees/realistic-tree-9-rainbow-tree-54622
+  	\item Round Tower - https://assetstore.unity.com/packages/3d/environments/historic/round-tower-5581
+	\item Full Body FPS Controller - https://assetstore.unity.com/packages/templates/systems/full-body-fps-controller-134060
+	\item SIMPLE FANTASY GUI - https://assetstore.unity.com/packages/2d/gui/simple-fantasy-gui-99451
+	\item Fighter Pack Bundle FREE - https://assetstore.unity.com/packages/3d/animations/basic-motions-free-pack-154271
+	\item Free - Biomechanical Mutant - https://assetstore.unity.com/packages/3d/characters/humanoids/sci-fi/free-biomechanical-mutant-166330
 \end{itemize}
 
-\clearpage
 \section{Podsumowanie}
-opisanie trudności oraz rozwiązania, wskazanie pozytywnych cech projektu oraz ewentualnych planów i szans na dalszy rozwój projektu.
+Podsumowując projekt, można stwierdzić, że był on niezywkle edukujący. Dzięki pracy nad projektem znacząco poszerzono wiedzę z zakresu tworzenia gier z wykorzystaniem narzędzi Unity, i we własnym zakresie poznano wiele mechanizmów co przełożyło się na dużo lepsze poznanie ich i zrozumienie działania każdego z tych mechanizmów. Niezywkle interesujący okazał się system animacji, który na pewno będzie jeszcze zgłębiany. W drugiej kolejności projekt rozwinął też umiejętności miekkie, takie jak praca w grupie co na pewno będzie miało pozytywny wpływ na przyszłą prace. Największy problem jaki wystąpił był system animacji dla postaci gracza, a konkretnie animacje ataku, co też końcowo nie zostało rozwiązane. Końcowo projekt nie będzie dalej rozwijany.
 
 
 \noindent\makebox[\linewidth]{\rule{0.6\paperwidth}{0.4pt}}
