@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Wprowadzenie}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Nazwa podsekcji}{2}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Nazwa podpodsekcji}{2}{subsubsection.1.1.1}%
+\contentsline {section}{\numberline {2}Kolejna nazwa sekcji}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Nazwa pod(sub)sekcji}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Nazwa podsekcji}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Nazwa podsekcji}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Nazwa podsekcji}{4}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Opis wkładu własnego w realizację projektu}{4}{section.3}%
+\contentsline {section}{\numberline {4}Spis zastosowanych zasobów}{4}{section.4}%
+\contentsline {section}{\numberline {5}Podsumowanie}{4}{section.5}%

@@ -1,0 +1,163 @@
+\documentclass[10pt,a4paper]{article}
+%\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{polski}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usepackage{hyperref}
+%\usepackage{antpolt}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{fancyvrb}
+
+\usepackage{color}
+
+%\setlength{\topskip}{0mm} \setlength{\footskip}{0mm} \setlength{\topmargin}{0mm} \setlength{\marginparwidth}{0mm}
+%\setlength{\headsep}{2mm} \setlength{\headheight}{0mm} \setlength{\textheight}{250mm}
+%\setlength{\textwidth}{160mm} \setlength{\oddsidemargin}{0mm} \setlength{\evensidemargin}{0mm}
+
+\setlength{\topskip}{0mm} \setlength{\topmargin}{0mm}
+\setlength{\oddsidemargin}{0mm} \setlength{\evensidemargin}{0mm}
+\setlength{\marginparwidth}{0mm} \setlength{\headsep}{0mm}
+\setlength{\headheight}{0mm} \setlength{\textheight}{240mm}
+\setlength{\textwidth}{170mm}
+
+
+\floatname{algorithm}{Algorytm}
+\renewcommand{\lstlistlistingname}{Spis listingów}
+\renewcommand{\lstlistingname}{Listing}
+
+\newcommand{\centered}[1]{\begin{tabular}{l} #1 \end{tabular}}
+
+\lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+  {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+  {ł}{\l{}}1 {ś}{{\'s}}1 {ź}{{\.z}}1  {ó}{{\'o}}1
+  {ą}{{\k{a}}}1
+}
+
+\begin{document}
+
+\pagestyle{plain}
+\begin{center}
+\begin{center}
+    \includegraphics[width=.55\textwidth]{logo}
+\end{center}
+\vspace{0.5cm}
+\textsc{\Huge{Uniwersytet Zielonogórski}}\\
+\LARGE{Wydział Informatyki, Elektrotechniki i~Automatyki}\\
+\large{Instytut Sterowania i Systemów Informatycznych}\\
+\vspace{0.5cm}
+\Large{Programowanie gier 3D -- Projekt}\\
+Prowadzący: Mgr inż. Marcin Skobel \\ 
+\vspace{2cm}
+\LARGE{Wściekły Maks - Raport cząstkowy nr 4}\\
+\vspace{2cm} 
+\Large{Stanisław Mól, Erwin Konkel} \\
+\Large{Grupa dziekańska: 33INF-SSI-SP} \\
+\vspace{0.5cm} 
+\Large{Data oddania projektu: 08.01.2021}
+\vspace{4cm}
+\begin{flushleft}
+	Ocena: ..........................................
+\end{flushleft}
+\vspace{1cm}
+\end{center}
+
+\footnotesize
+\tableofcontents
+
+\footnotesize
+\lstlistoflistings
+
+\noindent\makebox[\linewidth]{\rule{0.6\paperwidth}{0.4pt}}
+
+\section{Scenariusz gry}
+Prace na scenariuszem w trakcie przygotowania.
+
+\section{Zrealizowane elementy}
+\begin{itemize}
+  \item Skybox
+  \item Design mapy
+  \item Tekstury
+  \item Wieże
+  \item Postać gracza
+  \item Poruszanie się gracza
+  \item Pierwszy przeciwnik
+  \item Teren poruszania się przeciwnika
+  \item System animacji przeciwnika
+  \item Atakowanie / poruszanie się przeciwnika (pojawiły się błędy)
+  \item Wioska początkowa
+  \item Granice mapy
+  \item Ulepszenie ścieżki 
+  \item Poprawione oświetlenie
+  \item Dodanie nowego poziomu (nowa wioska)
+  \item Dodanie MainMenu
+\end{itemize}
+
+\section{Opis wkładu własnego w realizację projektu}
+\vspace{0.5cm}
+\begin{description}
+  \item[Stanisław Mól:] \hfill
+  	\begin{itemize}
+ 	  \item Postać gracza
+ 	  \item Poruszanie się gracza
+	  \item Pierwszy przeciwnik
+	  \item Teren poruszania się przeciwnika
+	  \item System animacji przeciwnika
+	  \item Atakowanie / poruszanie się przeciwnika (pojawiły się błędy)
+	  \item Naprawa błędów
+	  \item Zmiana przeciwnika na Humanoidalnego
+	  \item Dodanie MainMenu
+	\end{itemize}
+  \item[ Erwin Konkel:] \hfill
+  	\begin{itemize}
+          \item Skybox
+  	  \item Design mapy
+ 	  \item Tekstury
+  	  \item Wieże
+	  \item Wioska początkowa
+ 	  \item Granice mapy
+  	  \item Ulepszenie ścieżki 
+  	  \item Poprawione oświetlenie
+	  \item Rozwijanie wioski
+	  \item NPC
+	  \item Dodanie nowego poziomu (nowa wioska)
+	\end{itemize}
+\end{description}
+
+\section{Spis zastosowanych zasobów}
+\begin{itemize}
+  \item Third Person Controller - Basic Locomotion FREE - https://assetstore.unity.com/packages/tools/utilities/third-person-controller-basic-locomotion-free-82048
+  \item Free Low Poly Desert Pack - https://assetstore.unity.com/packages/3d/environments/free-low-poly-desert-pack-106709
+  \item Fantasy Skybox Free - https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
+  \item Ruined Tower Free - https://assetstore.unity.com/packages/3d/environments/ruined-tower-free-66495
+  \item Spider Green - https://assetstore.unity.com/packages/3d/characters/animals/insects/spider-green-11869
+  \item Campfire Pack - https://assetstore.unity.com/packages/3d/environments/fantasy/campfire-pack-11256
+\end{itemize}
+
+\noindent\makebox[\linewidth]{\rule{0.6\paperwidth}{0.4pt}}
+
+\begin{center}
+	Koniec dokumentu.
+\end{center}
+
+
+\end{document}
